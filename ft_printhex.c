@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printhex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/27 16:26:50 by tbenz             #+#    #+#             */
-/*   Updated: 2023/09/28 10:11:05 by tbenz            ###   ########.fr       */
+/*   Created: 2023/09/27 18:15:02 by tbenz             #+#    #+#             */
+/*   Updated: 2023/09/28 10:39:15 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+void	ft_printhex(char s, unsigned long long nbr, int *len)
+{
+	char	*base;
 
-void	ft_check(char *ptr, int len, va_list args);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_print_pointer(void *ptr, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putuns_fd(unsigned int n, int fd);
-void	ft_puthex_fd(char s, unsigned long long nbr, int fd);
-
-#endif
+	if (s == 'x' || s == 'p')
+	{
+		base = "0123456789abcdef";
+		if (s == 'p')
+			*len += write(1, '0x', 2);
+	}
+	else if (s == 'X')
+		base = "0123456789ABCDEF";
+	if (nbr >= 16)
+		ft_print_num(s, (nbr / 16));
+	ft_putchar(base[nbr % 16], len);
+}
