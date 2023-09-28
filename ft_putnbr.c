@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 18:24:19 by tbenz             #+#    #+#             */
-/*   Updated: 2023/09/28 11:43:47 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/09/28 12:31:04 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_putnbr(int n, int *len)
 	}
 	if (i > 9)
 	{
-		ft_putnbr_fd(i / 10, len);
-		ft_putnbr_fd(i % 10, len);
+		ft_putnbr(i / 10, len);
+		ft_putnbr(i % 10, len);
 	}
 	else
 		ft_putchar(i + 48, len);

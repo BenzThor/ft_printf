@@ -6,19 +6,29 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:31:41 by tbenz             #+#    #+#             */
-/*   Updated: 2023/09/28 11:38:54 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/09/28 15:25:35 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putptr(size_t ptr, int *len)
+static void	ft_putptrhelp(unsigned long long nb, int *len)
 {
 	char	*base;
 
 	base = "0123456789abcdef";
-	len += write(1, "0x", 2);
-	if (ptr >= 16)
-		ft_putptr((ptr / 16), len);
-	ft_putchar(base[ptr % 16], len);
+	if (nb >= 16)
+		ft_putptrhelp((nb / 16), len);
+	ft_putchar(base[nb % 16], len);
+}
+
+void	ft_putptr(void *ptr, int *len)
+{
+	if (!ptr)
+	{
+		*len += write(1, "(nil)", 5);
+		return ;
+	}
+	*len += write(1, "0x", 2);
+	ft_putptrhelp((unsigned long long)ptr, len);
 }

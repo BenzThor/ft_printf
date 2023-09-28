@@ -6,28 +6,28 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 16:15:12 by tbenz             #+#    #+#             */
-/*   Updated: 2023/09/28 12:02:25 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/09/28 15:22:28 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_check(char *s, int *len, va_list *args)
+void	ft_check(char s, int *len, va_list *args)
 {
-	if (*s == 'c')
-		ft_putchar(va_arg(*args, char), len);
-	else if (*s == 's')
+	if (s == 'c')
+		ft_putchar(va_arg(*args, int), len);
+	else if (s == 's')
 		ft_putstr(va_arg(*args, char *), len);
-	else if (*s == 'p')
-		ft_putptr(va_arg(*args, size_t), len);
-	else if (*s == 'd' || *s == 'i')
+	else if (s == 'p')
+		ft_putptr(va_arg(*args, void *), len);
+	else if (s == 'd' || s == 'i')
 		ft_putnbr(va_arg(*args, int), len);
-	else if (*s == 'u')
+	else if (s == 'u')
 		ft_putuns(va_arg(*args, unsigned int), len);
-	else if (*s == 'x' || *s == 'X')
-		ft_puthex(s[0], va_arg(*args, unsigned), len);
-	else if (*s == '%')
-		len += write (1, '%', 1);
+	else if (s == 'x' || s == 'X')
+		ft_puthex(s, va_arg(*args, unsigned), len);
+	else if (s == '%')
+		len += write (1, "%", 1);
 	else
 		return ;
 }
@@ -38,13 +38,15 @@ int	ft_printf(const char *s, ...)
 	va_list	args;
 
 	if (!s)
-		return (NULL);
+		return (-1);
 	va_start(args, s);
 	len = 0;
 	while (*s)
 	{
 		if (*s == '%')
-			ft_check(++s, &len, args);
+		{
+			ft_check(*(++s), &len, &args);
+		}
 		else
 			len += write(1, &s[0], 1);
 		s++;
@@ -53,3 +55,26 @@ int	ft_printf(const char *s, ...)
 	return (len);
 }
 
+#include <stdio.h>
+int	main(void)
+{
+	int		len1 = 0;
+	int		len2 = 0;
+	void	*ptr;
+
+	ptr = &len1;
+	len1 = ft_printf("normal string\t");
+	len2 = printf("normal string\n");
+	printf("ft_printf len: %d\tprintf len: %d\n", len1, len2);
+
+	len1 = ft_printf("nor%%mal \t");
+	len2 = printf("nor%%mal\n");
+	printf("ft_printf len: %d\tprintf len: %d\n", len1, len2);
+
+	len1 = ft_printf("nasdf %s\t", "das ist ein String");
+	len2 = printf("nasdf %s\n", "das ist ein String");
+	printf("ft_printf len: %d\tprintf len: %d\n", len1, len2);
+
+	len1 = ft_printf("nasdf %p\t", ptr);
+	len2 = printf("nasdf %p\n", ptr);
+}
