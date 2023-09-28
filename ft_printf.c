@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 16:15:12 by tbenz             #+#    #+#             */
-/*   Updated: 2023/09/28 11:55:05 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/09/28 12:02:25 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ int	ft_printf(const char *s, ...)
 	{
 		if (*s == '%')
 			ft_check(++s, &len, args);
-
-		len++;
+		else
+			len += write(1, &s[0], 1);
 		s++;
 	}
 	va_end(args);
 	return (len);
 }
+
