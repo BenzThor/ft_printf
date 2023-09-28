@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 16:15:12 by tbenz             #+#    #+#             */
-/*   Updated: 2023/09/28 10:18:17 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/09/28 11:55:05 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	ft_check(char *s, int *len, va_list *args)
 {
 	if (*s == 'c')
-		ft_putchar_fd(va_args(*args, char), 1);
+		ft_putchar(va_arg(*args, char), len);
 	else if (*s == 's')
-		ft_print_string(va_arg(*args, char *));
+		ft_putstr(va_arg(*args, char *), len);
 	else if (*s == 'p')
-		ft_print_pointer(va_arg(*args, void *), 1);
+		ft_putptr(va_arg(*args, size_t), len);
 	else if (*s == 'd' || *s == 'i')
-		ft_print_number(va_arg(*args, int));
+		ft_putnbr(va_arg(*args, int), len);
 	else if (*s == 'u')
-		ft_print_unsigned(va_arg(*args, unsigned int));
+		ft_putuns(va_arg(*args, unsigned int), len);
 	else if (*s == 'x' || *s == 'X')
-		ft_print_string(va_arg(*args, char *));
+		ft_puthex(s[0], va_arg(*args, unsigned), len);
 	else if (*s == '%')
 		len += write (1, '%', 1);
 	else
@@ -45,6 +45,7 @@ int	ft_printf(const char *s, ...)
 	{
 		if (*s == '%')
 			ft_check(++s, &len, args);
+
 		len++;
 		s++;
 	}

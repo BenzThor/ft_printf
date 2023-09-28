@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/27 16:26:50 by tbenz             #+#    #+#             */
-/*   Updated: 2023/09/28 11:51:49 by tbenz            ###   ########.fr       */
+/*   Created: 2023/09/27 18:15:02 by tbenz             #+#    #+#             */
+/*   Updated: 2023/09/28 11:10:06 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+void	ft_putthex(char s, unsigned nbr, int *len)
+{
+	char	*base;
 
-void	ft_check(char *ptr, int *len, va_list *args);
-void	ft_putchar(char c, int *len);
-void	ft_putstr(char *s, int *len);
-void	ft_putptr(size_t ptr, int *len);
-void	ft_putnbr(int n, int *len);
-void	ft_putuns(unsigned int n, int *len);
-void	ft_puthex(char s, unsigned long long nbr, int *len);
-
-#endif
+	if (s == 'x' || s == 'p')
+		base = "0123456789abcdef";
+	else if (s == 'X')
+		base = "0123456789ABCDEF";
+	if (nbr >= 16)
+		ft_puthex(s, (nbr / 16), len);
+	ft_putchar(base[nbr % 16], len);
+}
