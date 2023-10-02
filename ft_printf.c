@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 16:15:12 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/02 11:26:30 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/02 11:51:33 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_check(char s, int *len, va_list *args)
 	else if (s == 'x' || s == 'X')
 		ft_puthex(s, va_arg(*args, unsigned), len);
 	else if (s == '%')
-		len += write (1, "%", 1);
+		*len += write (1, "%", 1);
 	else
 		return ;
 }
@@ -81,5 +81,13 @@ int	main(void)
 	len1 = ft_printf("nasdf %p\t, %s", ptr, "asdsdgfdsfa");
 	len2 = printf("nasdf %p\t, %s\n", ptr, "asdfa");
 	printf("ft_printf len: %d\tprintf len: %d\n", len1, len2);
+
+	len1 = ft_printf(" NULL %s NULL ", NULL);
+	len2 = printf(" NULL %s NULL ", NULL);
+	printf("ft_printf len: %d\tprintf len: %d\n", len1, len2);
+
+	len1 = ft_printf(" %% ");
+	len2 = printf(" %% ");
+	printf("ft_printf len: %d\tprintf len: %d\n", len1, len2);
 }
- */
+*/

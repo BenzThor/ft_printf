@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:46:29 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/02 11:36:23 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/02 11:43:55 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_putstr(char *s, int *len)
 {
 	if (!s)
 	{
-		*len = write(1, "(null)", 6);
+		*len += write(1, "(null)", 6);
 		return ;
 	}
 	while (*s)
