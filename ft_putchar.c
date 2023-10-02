@@ -6,13 +6,21 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:22:16 by tbenz             #+#    #+#             */
-/*   Updated: 2023/09/28 12:42:43 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/02 10:13:36 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c, int *len)
+void	ft_putchar(int c, int *len)
 {
 	*len += write(1, &c, 1);
 }
+/*
+int	main(void)
+{
+	int i = 0;
+	ft_putchar('0', &i);
+	ft_putchar('0' + 256, &i);
+}
+ */

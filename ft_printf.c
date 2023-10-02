@@ -6,13 +6,13 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 16:15:12 by tbenz             #+#    #+#             */
-/*   Updated: 2023/09/28 15:22:28 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/02 11:26:30 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_check(char s, int *len, va_list *args)
+static void	ft_check(char s, int *len, va_list *args)
 {
 	if (s == 'c')
 		ft_putchar(va_arg(*args, int), len);
@@ -54,7 +54,7 @@ int	ft_printf(const char *s, ...)
 	va_end(args);
 	return (len);
 }
-
+/*
 #include <stdio.h>
 int	main(void)
 {
@@ -77,4 +77,9 @@ int	main(void)
 
 	len1 = ft_printf("nasdf %p\t", ptr);
 	len2 = printf("nasdf %p\n", ptr);
+
+	len1 = ft_printf("nasdf %p\t, %s", ptr, "asdsdgfdsfa");
+	len2 = printf("nasdf %p\t, %s\n", ptr, "asdfa");
+	printf("ft_printf len: %d\tprintf len: %d\n", len1, len2);
 }
+ */
