@@ -43,7 +43,7 @@ Utilize variadic functions to handle multiple argument types.
 
 1. Clone the Repository:
     ```bash
-    git clone https://github.com/benzThor/ft_printf.git
+    git clone https://github.com/BenzThor/ft_printf.git
     ```
   
 2. The ft_printf library does not need to be compiled or installed separately. To use ft_printf in your project:
