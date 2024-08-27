@@ -10,22 +10,22 @@
 </p>
 
 <h3 align="center">
-	<a href="#-project-overview">🔭 Project Overview</a>
+	<a href="#-project-overview">📝 Project Overview</a>
 	<span> · </span>
-	<a href="#-objectives">💡 Objectives</a>
+	<a href="#-objectives">🎯 Objectives</a>
   <span> · </span>
 	<a href="#️-installation">🛠️ Installation</a>
 	<span> · </span>
 	<a href="#-usage">💻 Usage</a>
 </h3>
 
-## 🔭 Project Overview
+## 📝 Project Overview
 
 ft_printf is a custom implementation of the printf function in C. 
 This project aims to provide a simplified version of the standard printf function, supporting a subset of format specifiers and functionalities. 
 It is an excellent way to understand and practice variable argument lists, format specifiers, and custom output functions.
 
-## 💡 Objectives
+## 🎯 Objectives
 
 ### Custom implementation:
 
@@ -71,7 +71,7 @@ Utilize variadic functions to handle multiple argument types.
     #include "ft_printf/ft_printf.h"
     ```
 
-## 💻 Usage
+## 🚀 Usage
 
 1. **Include the Header File:**
 
